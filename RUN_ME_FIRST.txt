@@ -1,0 +1,60 @@
+==============================================================================
+  NLOS SYNTHETIC DATA GENERATOR  --  READ ME FIRST
+  (cuda-render : turns a 3D model into a transient NLOS measurement)
+==============================================================================
+
+This folder builds and runs on Windows 11 with an NVIDIA GPU. You only need to
+install 3 things once, then run ONE command.
+
+------------------------------------------------------------------------------
+STEP 1 - INSTALL THESE 3 PREREQUISITES (one time, per machine)
+------------------------------------------------------------------------------
+  1. NVIDIA GPU driver           (recent; most PCs already have it)
+
+  2. Visual Studio 2022 Community + the "Desktop development with C++" workload
+       https://visualstudio.microsoft.com/downloads/
+
+  3. CUDA Toolkit 11.8   <-- MUST be 11.8, NOT 12.x
+       https://developer.nvidia.com/cuda-11-8-0-download-archive
+       (the code uses CUDA texture references that were removed in CUDA 12)
+
+  (Python 3.10 is optional - only needed for the .mat / .mp4 converters.)
+
+------------------------------------------------------------------------------
+STEP 2 - RUN ONE COMMAND
+------------------------------------------------------------------------------
+  Open PowerShell in THIS folder and run:
+
+      powershell -ExecutionPolicy Bypass -File .\cuda-render\setup.ps1
+
+  That's it. The script automatically:
+    - checks the prerequisites above
+    - installs the C++ libraries (vcpkg: GLEW/GLFW/GLM) and OpenCV
+    - detects your GPU and where you put this folder (no path editing needed)
+    - builds the renderer and runs it on the bundled bunny model
+
+  First run takes a few minutes (downloads libraries). Later runs are seconds.
+
+------------------------------------------------------------------------------
+WHERE THE OUTPUT GOES
+------------------------------------------------------------------------------
+  data\bunny-renders\0\bunny\shine_..._\
+
+    light-1-*.hdr   = the transient NLOS measurement  (THE data)
+    confocal-*      = confocal steady images
+    original-*      = normal line-of-sight images
+    depth-*         = depth maps
+
+------------------------------------------------------------------------------
+HANDY OPTIONS
+------------------------------------------------------------------------------
+  setup.ps1 -NoRun     build only, don't render
+  setup.ps1 -Clean     wipe build\ and reconfigure from scratch
+
+------------------------------------------------------------------------------
+WANT MORE DETAIL?
+------------------------------------------------------------------------------
+  cuda-render\QUICKSTART_VERIFIED.md   tested step-by-step setup + troubleshooting
+  cuda-render\SETUP_WINDOWS_RENDER.md  full explanation (models, confocal,
+                                       resolution, output format, datasets)
+==============================================================================

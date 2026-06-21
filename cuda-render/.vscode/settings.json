@@ -1,0 +1,14 @@
+{
+    "cmake.sourceDirectory": "${workspaceFolder}/cuda-render",
+    "cmake.buildDirectory": "${workspaceFolder}/cuda-render/build",
+    "cmake.generator": "Visual Studio 17 2022",
+    "cmake.platform": "x64",
+    "cmake.configureSettings": {
+        "CMAKE_TOOLCHAIN_FILE": "C:/dev/vcpkg/scripts/buildsystems/vcpkg.cmake",
+        "CMAKE_CUDA_ARCHITECTURES": "86",
+        "OpenCV_DIR": "C:/dev/opencv/build"
+    },
+    "cmake.configureArgs": [
+        "-T", "version=14.37.32822,cuda=11.8"
+    ]
+}

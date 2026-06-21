@@ -1,0 +1,18 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run nlos_render",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${command:cmake.launchTargetPath}",
+            "args": [],
+            "stopAtEntry": false,
+            // CWD must contain the two shader files (CMake copies them next to
+            // the .exe), so launch from the executable's own directory.
+            "cwd": "${command:cmake.getLaunchTargetDirectory}",
+            "environment": [],
+            "console": "integratedTerminal"
+        }
+    ]
+}

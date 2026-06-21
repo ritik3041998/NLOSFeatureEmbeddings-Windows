@@ -1,0 +1,78 @@
+==============================================================================
+  NLOS cuda-render  --  LIBRARIES & DEPENDENCIES (for a new / different system)
+==============================================================================
+
+Two groups: (1) install manually once, (2) setup.ps1 installs automatically.
+Hard version rules: CUDA must be 11.8 (NOT 12.x); Visual Studio must be 2022
+with the C++ workload. Everything else is flexible.
+
+
+------------------------------------------------------------------------------
+1) INSTALL MANUALLY (one time) -- setup.ps1 only CHECKS for these
+------------------------------------------------------------------------------
+
+  NVIDIA GPU driver
+      Version : recent (>= 520; 591.80 tested)
+      Why     : provides OpenGL 4.6 + the CUDA runtime
+      Note    : any NVIDIA GPU works; the script auto-detects its
+                compute capability (e.g. RTX 3050 -> sm_86, RTX 4060 -> sm_89)
+
+  Visual Studio 2022 Community  +  "Desktop development with C++" workload
+      Version : 17.x
+      Get it  : https://visualstudio.microsoft.com/downloads/
+      Bundles : MSVC compiler, CMake 3.31, Ninja, Windows SDK, and the
+                CUDA MSBuild integration.
+      Note    : because CMake + Ninja come bundled, you do NOT install
+                CMake separately.
+
+  CUDA Toolkit 11.8     <-- MUST be 11.8, NOT 12.x
+      Get it  : https://developer.nvidia.com/cuda-11-8-0-download-archive
+      Why     : the kernel uses CUDA texture references, which were
+                removed in CUDA 12.
+
+  Git for Windows
+      Version : any recent
+      Get it  : https://git-scm.com/download/win
+      Why     : setup.ps1 runs "git clone" to fetch vcpkg.
+      Note    : usually already installed.
+
+
+------------------------------------------------------------------------------
+2) INSTALLED AUTOMATICALLY by setup.ps1 -- do nothing
+------------------------------------------------------------------------------
+
+  vcpkg     latest    (git clone + bootstrap)
+  GLEW      2.x       (vcpkg install glew:x64-windows)
+  GLFW      3.4       (vcpkg install glfw3:x64-windows)
+  GLM       1.x       (vcpkg install glm:x64-windows)
+  OpenCV    4.10.0    (prebuilt download + extract, vc16 build)
+
+  DLL handling:
+    - GLEW/GLFW DLLs are auto-copied next to the .exe by vcpkg
+    - the OpenCV DLL is copied next to the .exe by the script
+
+
+------------------------------------------------------------------------------
+3) OPTIONAL -- only for the data converters
+------------------------------------------------------------------------------
+
+  Python 3.10
+  pip install numpy scipy opencv-python
+
+  Used by:
+    cuda-render\conversion\hdr2mat.py            (transient HDR -> .mat)
+    cuda-render\conversion\preprocess_hdr2video.py (transient HDR -> .mp4)
+
+
+------------------------------------------------------------------------------
+NOTES FOR A DIFFERENT SYSTEM
+------------------------------------------------------------------------------
+  * Internet is required on first run (downloads vcpkg + libs + OpenCV,
+    a few hundred MB). Later runs are offline & fast.
+  * Different GPU  -> fine (compute capability auto-detected).
+  * Different drive/path -> fine (paths auto-detected from folder location).
+  * After the 4 manual installs above, just run:
+
+        powershell -ExecutionPolicy Bypass -File .\cuda-render\setup.ps1
+
+==============================================================================

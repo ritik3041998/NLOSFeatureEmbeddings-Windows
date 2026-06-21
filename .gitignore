@@ -1,0 +1,19 @@
+# ---- build artifacts ----
+# (note: do NOT ignore *.obj globally -- the 3D model is model_normalized.obj)
+cuda-render/build/
+*.exe
+*.pdb
+*.ilk
+*.user
+
+# ---- generated render outputs (regenerable via setup.ps1) ----
+data/bunny-renders/
+data/bunny-renders-*/
+
+# ---- python ----
+**/__pycache__/
+*.pyc
+
+# ---- misc ----
+temp.log
+.DS_Store
