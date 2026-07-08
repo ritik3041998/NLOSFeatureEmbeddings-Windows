@@ -1,4 +1,4 @@
-#include "renderclass.h"
+﻿#include "renderclass.h"
 #include <chrono>
 #include <filesystem>   // C++17, Windows-portable mkdir
 
@@ -803,4 +803,5 @@ void render::display(string svfolder, mesh obj, int shininesslevel, int sz,
 		// all the rotation
 	}
 }
+
 

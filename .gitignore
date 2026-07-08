@@ -11,6 +11,9 @@ data/bunny-renders/
 data/bunny-renders-*/
 data/bunny-raw-*/
 data/bunny-model-10/
+data/my-models/
+data/my-raw/
+data/test-prepare/
 
 # ---- large reference dataset (kept locally, not part of this repo) ----
 bike/
