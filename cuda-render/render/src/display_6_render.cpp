@@ -4,7 +4,7 @@
 
 #define TBE 0
 #define TEN 6
-#define NTBIN 1024   // number of time bins (was (TEN-TBE)*100 = 600)
+#define NTBIN 2048   // number of time bins (was (TEN-TBE)*100 = 600)
 
 ////////////////////////////////////////////////////////
 // CUDA includes

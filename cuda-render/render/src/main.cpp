@@ -28,9 +28,9 @@ void getFiles(string parentFolder, vector<string> &vecFileNames) {
 
 int main() {
 
-	string parentFlder = "D:/NLOSFeatureEmbeddings-main/data/bunny-model";
+	string parentFlder = "D:/NLOSFeatureEmbeddings-main/data/bunny-model-10";
 
-	string parentSvFolder = "D:/NLOSFeatureEmbeddings-main/data/bunny-renders";
+	string parentSvFolder = "D:/NLOSFeatureEmbeddings-main/data/bunny-raw-mini";
 
 	// to change to shapenet models
 	// parentFlder = "/u6/a/wenzheng/remote2/datasets/shapenet/ShapeNetCore.v2/03790512";
@@ -41,7 +41,7 @@ int main() {
 
 	// use predefined rotation and shift or not
 	// in this case, we do not rotate the model
-	bool definerot = true;
+	bool definerot = false;   // random bike-like poses per sample
 	float rotx = 0;
 	float roty = 0;
 	float rotz = -0;
@@ -69,8 +69,8 @@ int main() {
 		fs::create_directories(svfolder);
 	}
 
-	int height = 128;
-	int width = 128;
+	int height = 64;
+	int width = 64;
 
 	// each model, we sample 100x100, the more the better, but takes longer time.
 	int samplenum = 600;
@@ -88,7 +88,7 @@ int main() {
 
 	// how many renders do we want
 	// in this example, we render only one model.
-	int rendernum = 1;
+	int rendernum = 10;   // 10 models
 	int i = -1;
 	int step = 0;
 
@@ -112,7 +112,7 @@ int main() {
 			tmp->loadmesh(tmpobj);
 
 			// how many rotation we have
-			int rnum = 1;
+			int rnum = 5;   // 5 poses per model
 			// how many lights we set, only 1 light for non confocal case.
 			int lvnum = 1;
 			int lhnum = 1;

@@ -6,9 +6,16 @@ cuda-render/build/
 *.ilk
 *.user
 
-# ---- generated render outputs (regenerable via setup.ps1) ----
+# ---- generated render outputs / intermediates (regenerable) ----
 data/bunny-renders/
 data/bunny-renders-*/
+data/bunny-raw-*/
+data/bunny-model-10/
+
+# ---- large reference dataset (kept locally, not part of this repo) ----
+bike/
+
+# NOTE: output/ (the small bike-style sample dataset) IS tracked on purpose.
 
 # ---- python ----
 **/__pycache__/
