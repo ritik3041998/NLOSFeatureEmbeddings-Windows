@@ -805,3 +805,6 @@ void render::display(string svfolder, mesh obj, int shininesslevel, int sz,
 }
 
 
+
+
+
