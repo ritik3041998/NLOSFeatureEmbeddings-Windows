@@ -112,7 +112,7 @@ int main() {
 			tmp->loadmesh(tmpobj);
 
 			// how many rotation we have
-			int rnum = 5;   // 5 poses per model
+			int rnum = 2;   // 5 poses per model
 			// how many lights we set, only 1 light for non confocal case.
 			int lvnum = 1;
 			int lhnum = 1;
@@ -157,6 +157,7 @@ int main() {
 	cout << "done!" << endl;
 	return 0;
 }
+
 
 
 
